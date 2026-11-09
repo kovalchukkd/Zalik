@@ -4,13 +4,14 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>0f847cf3-c1df-40ff-844d-1dd56810de6b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>Zalik.py</StartupFile>
+    <StartupFile>datagen.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <Name>Zalik</Name>
     <RootNamespace>Zalik</RootNamespace>
+    <IsWindowsApplication>False</IsWindowsApplication>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="app.py" />
+    <Compile Include="datagen.py" />
     <Compile Include="pclasses.py" />
     <Compile Include="dataloader.py" />
     <Compile Include="Zalik.py" />

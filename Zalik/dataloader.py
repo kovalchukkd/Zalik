@@ -11,9 +11,9 @@ def loadstatsfromcsv(classes_file: TextIO, students_file: TextIO, name: str = "�
     byid : dict[str, pclasses.Year] = {}
 
     for row in csv.DictReader(classes_file):
-        school = pclasses.Year(grade = int(row["grade"]), letter = str(row["letter"]).strip()) #Створює об'єкт pslasses.Year для кожного класу в таблиці
-        byid[row["class_id"]] = school 
-        pclasses.School.addgroup(school) 
+        year = pclasses.Year(grade = int(row["grade"]), letter = str(row["letter"]).strip()) #Створює об'єкт pslasses.Year для кожного класу в таблиці
+        byid[row["classid"]] = year 
+        school.addgroup(year) 
 
     for idx, row in enumerate(csv.DictReader(students_file), start = 1):
         student = pclasses.Student(firstname = row["firstname"], midname= row["midname"], lastname= row["lastname"], #Створює об'єкт pclasses.Student для кожного учня в таблиці

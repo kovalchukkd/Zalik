@@ -130,6 +130,7 @@ class School:
         self.employees.append(newempolyee)
 
     #Статистика
+    @property 
     def allstudents(self) -> list[Student]:
         return [s for c in self.groups for s in c.students]
 
@@ -154,7 +155,7 @@ class School:
         return dict(sorted(result.items()))
 
     def studperletter(self) -> dict[str, float]:
-        sizes: dict[str, list[int]] = defaultdict[list]
+        sizes: dict[str, list[int]] = defaultdict(list)
         for c in self.groups:
             sizes[c.letter].append(c.size)
         return {k: sum(v) / len(v) for k, v in sorted(sizes.items())}
@@ -170,7 +171,7 @@ class School:
         graduated : list[Student] = []
         remaining : list[Year] = []
         for c in self.groups:
-            if c.promoteall():
+            if c.promote():
                 remaining.append(c)
             else:
                 graduated.extend(c.students)
