@@ -56,23 +56,11 @@ def renderschool(school : pclasses.School) -> None:
     rendercharts(school)
     st.dataframe([{"Клас" : c.yearname, "Паралель" : c.grade, "Вертикаль" : c.letter, "Учнів" : c.size, "Сер. Оцінка" : round(c.avggrade, 2)}
                   for c in sorted(school.groups, key = lambda c: (c.grade, c.letter))], use_container_width = True, hide_index = True)
-    st.caption("Якщо файл не завантажено, використовується таблиця з /data")
 
 #Створення сторінки веб додатка
 st.title("Статистика учнів школи")
 
-with st.sidebar:
-    st.header("Дані")
-    upclasses = st.file_uploader("classes.csv", type="csv")
-    upstuds = st.file_uploader("students.csv", type="csv")
-
-    if upclasses and upstuds :
-        original = dataloader.loadstatsfromcsv(
-            io.TextIOWrapper(upclasses, encoding= "utf-8-sig", newline=""),
-            io.TextIOWrapper(upstuds, encoding= "utf-8-sig", newline=""), "Моя школа")
-
-    else:
-        original = dataloader.loadschool(DATA_DIR / "classes.csv", DATA_DIR / "students.csv", "Моя школа")
+original = dataloader.loadschool(DATA_DIR / "classes.csv", DATA_DIR / "students.csv", "Моя школа")
 
 tbefore, tafter = st.tabs(["Початкові дані", "Дані після переведення"])
 
@@ -103,8 +91,7 @@ with tafter:
     for text, ok in checks.items():
         st.write("V" if ok else "X" + text)
 
-    st.info(f"Випускників: {len(graduated)}. Приклад: " + ", ".join(f"{o.yearname} -> {c.yearname}" for o, c in 
-                                                                    list(zip([c for c in original.groups if c.grade < 11], promoted.groups))[:5]))
+    st.info(f"Випускників: {len(graduated)}")
 
 
 

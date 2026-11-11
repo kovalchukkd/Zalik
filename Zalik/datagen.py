@@ -4,7 +4,7 @@ import csv
 import random
 from pathlib import Path
 
-random.seed(1321233123214124)
+random.seed(67)
 DATA = Path(__file__).parent /"data"
 DATA.mkdir(exist_ok = True)
 
@@ -28,7 +28,7 @@ with open(DATA /  "classes.csv", "w", encoding = "utf-8", newline = "") as cf, \
         for letter in LETTERS[:random.randint(2,4)]: #Створення класів
             cid += 1
             cw.writerow([cid, grade, letter])
-            for _ in range(1, 12):
+            for _ in range(random.randint(15, 45)):
                 m = random.random() < 0.5
                 f = random. random() < 0.5
                 birth = FIRST_GRADE_BIRTH - (grade - 1) - random.choice([0, 0, 0, 1])
